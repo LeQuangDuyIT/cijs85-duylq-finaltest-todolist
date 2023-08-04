@@ -10,6 +10,7 @@ const AddForm = ({ handleAddTodo, handleUpdateTodo, todoEditingId, handleResetFo
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState(false);
 
+  const formRef = useRef(null);
   const inputRef = useRef(null);
 
   const getTodoTitleById = () => {
@@ -61,7 +62,7 @@ const AddForm = ({ handleAddTodo, handleUpdateTodo, todoEditingId, handleResetFo
   };
 
   return (
-    <form className={cx('add-form')} onSubmit={onSubmitForm}>
+    <form ref={formRef} className={cx('add-form')} onSubmit={onSubmitForm}>
       <input
         ref={inputRef}
         type="text"
