@@ -1,0 +1,53 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 12px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: rgba(225, 225, 225, 0.5);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    input {
+      width: 18px;
+      height: 18px;
+    }
+
+    label {
+      font-size: 18px;
+    }
+
+    .todo-checked{
+      font-style: italic;
+      text-decoration: line-through;
+    }
+  }
+
+  &__setting {
+    display: flex;
+    gap: 16px;
+
+    button{
+      width: 24px;
+      height: 24px;
+
+      border: none;
+      border-radius: 50%;
+      background-color: transparent;
+
+      cursor: pointer;
+
+      &:hover{
+        background-color: rgb(105, 105, 105);
+        color: white;
+      }
+    }
+  }
+}
