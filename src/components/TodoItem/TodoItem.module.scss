@@ -6,6 +6,10 @@
   padding: 8px 12px;
   border-radius: 4px;
 
+  &__editing {
+    background-color: rgba(225, 225, 225, 0.5);
+  }
+
   &:hover {
     background-color: rgba(225, 225, 225, 0.5);
   }
@@ -24,7 +28,7 @@
       font-size: 18px;
     }
 
-    .todo-checked{
+    .todo-checked {
       font-style: italic;
       text-decoration: line-through;
     }
@@ -34,7 +38,7 @@
     display: flex;
     gap: 16px;
 
-    button{
+    button {
       width: 24px;
       height: 24px;
 
@@ -43,9 +47,19 @@
       background-color: transparent;
 
       cursor: pointer;
+    }
 
-      &:hover{
+    .edit-btn {
+      &:hover {
         background-color: rgb(105, 105, 105);
+        color: white;
+      }
+    }
+
+    .remove-btn {
+      color: rgb(255, 75, 75);
+      &:hover {
+        background-color: rgb(255, 75, 75);
         color: white;
       }
     }

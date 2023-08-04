@@ -72,11 +72,14 @@ function App() {
           handleUpdateTodo={handleUpdateTodo}
           handleRemoveTodo={handleRemoveTodo}
           onClickToEditing={() => setTodoEditingId(todo.id)}
+          todoEditingId={todoEditingId}
         />
       )),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [todoList]
+    [todoList, todoEditingId]
   );
+
+  const isEmptyData = todoListStorage.load().length === 0;
 
   return (
     <div className={cx('site-container')}>
@@ -112,8 +115,11 @@ function App() {
           todoEditingId={todoEditingId}
           handleResetForm={() => setTodoEditingId(null)}
         />
-        <div className={cx('todo-list')}>{todoListElements}</div>
-        {todoList.length > 0 && (
+        <div className={cx('todo-list')}>
+          {todoListElements}
+          {isEmptyData && <p className={cx('empty-noti')}>List is empty, please add todo.</p>}
+        </div>
+        {!isEmptyData && (
           <button className={cx('remove-all-btn')} onClick={handleRemoveAll}>
             <FontAwesomeIcon icon={faTrash} />
             Delete All

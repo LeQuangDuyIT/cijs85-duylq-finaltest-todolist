@@ -1,3 +1,5 @@
+$container-padding: 24px;
+
 * {
   margin: 0;
   padding: 0;
@@ -19,13 +21,14 @@ body {
   transform: translate(-50%, -50%);
 
   width: 100%;
-  max-width: 1024px;
+  max-width: 680px;
   height: fit-content;
   min-height: 90vh;
-  padding: 24px;
+  padding: $container-padding;
 
-  border-radius: 12px;
+  border-radius: 32px;
   background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   text-align: center;
 
@@ -35,7 +38,7 @@ body {
     justify-content: space-between;
 
     width: 500px;
-    height: calc(90vh - 24px * 2);
+    height: calc(90vh - $container-padding * 2);
     margin: 0 auto;
 
     .app-title {
@@ -84,6 +87,11 @@ body {
 
       margin-bottom: 12px;
       overflow-y: auto;
+
+      .empty-noti{
+        margin-top: 40px;
+        font-style: italic;
+      }
     }
 
     .remove-all-btn {

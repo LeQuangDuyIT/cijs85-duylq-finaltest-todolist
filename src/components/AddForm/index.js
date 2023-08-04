@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,10 +10,13 @@ const AddForm = ({ handleAddTodo, handleUpdateTodo, todoEditingId, handleResetFo
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState(false);
 
+  const inputRef = useRef(null);
+
   const getTodoTitleById = () => {
     const data = todoListStorage.load();
     const editingTodo = data.find(todo => todo.id === todoEditingId);
     setInputValue(editingTodo.title);
+    inputRef.current.focus();
   };
 
   useEffect(() => {
@@ -54,17 +57,20 @@ const AddForm = ({ handleAddTodo, handleUpdateTodo, todoEditingId, handleResetFo
       handleSubmitUpdate();
     }
     setInputValue('');
+    inputRef.current.focus();
   };
 
   return (
     <form className={cx('add-form')} onSubmit={onSubmitForm}>
       <input
+        ref={inputRef}
         type="text"
         placeholder="Add Todo"
         className={cx({ 'input-error': error })}
         value={inputValue}
         onInput={() => setError(false)}
         onChange={e => setInputValue(e.target.value)}
+        autoFocus
       />
       <button type="submit">{todoEditingId ? 'Edit' : 'Add'}</button>
     </form>

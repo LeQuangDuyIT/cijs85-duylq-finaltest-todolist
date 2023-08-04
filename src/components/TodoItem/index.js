@@ -6,7 +6,13 @@ import { faTrash, faPencil } from '@fortawesome/free-solid-svg-icons';
 import styles from './TodoItem.module.scss';
 let cx = classNames.bind(styles);
 
-const TodoItem = ({ data, handleUpdateTodo, handleRemoveTodo, onClickToEditing }) => {
+const TodoItem = ({
+  data,
+  handleUpdateTodo,
+  handleRemoveTodo,
+  onClickToEditing,
+  todoEditingId
+}) => {
   const { id, title, isCompleted } = data;
   const [checked, setChecked] = useState(isCompleted);
 
@@ -22,7 +28,7 @@ const TodoItem = ({ data, handleUpdateTodo, handleRemoveTodo, onClickToEditing }
   };
 
   return (
-    <div className={cx('todo-item')}>
+    <div className={cx('todo-item', { 'todo-item__editing': todoEditingId === id })}>
       <div className={cx('todo-item__content')}>
         <input type="checkbox" id={`todo-${id}`} checked={checked} onChange={onCheckCompleted} />
         <label htmlFor={`todo-${id}`} className={cx({ 'todo-checked': checked })}>
@@ -30,10 +36,10 @@ const TodoItem = ({ data, handleUpdateTodo, handleRemoveTodo, onClickToEditing }
         </label>
       </div>
       <div className={cx('todo-item__setting')}>
-        <button onClick={onClickToEditing}>
+        <button className={cx('edit-btn')} onClick={onClickToEditing}>
           <FontAwesomeIcon icon={faPencil} size="sm" />
         </button>
-        <button onClick={() => handleRemoveTodo(id)}>
+        <button className={cx('remove-btn')} onClick={() => handleRemoveTodo(id)}>
           <FontAwesomeIcon icon={faTrash} size="sm" />
         </button>
       </div>
